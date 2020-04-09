@@ -47,7 +47,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
             }
 
             String subject = claims.getSubject();
-            String role = claims.get("spring", String.class);
+            String role = claims.get("role", String.class);
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     subject,

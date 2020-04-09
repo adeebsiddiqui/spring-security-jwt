@@ -51,7 +51,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String jws = Jwts.builder()
                 .setSubject(authResult.getName())
-                .claim("role", "ASSASIN")
+                .claim("role", "HITMAN")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 25))
                 .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()), SignatureAlgorithm.HS256)
