@@ -1,5 +1,7 @@
 package com.ad.app.config;
 
+import com.ad.app.filter.JwtAuthenticationFilter;
+import com.ad.app.filter.JwtVerificationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -34,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
+            .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+            .addFilterAfter(new JwtVerificationFilter(), JwtAuthenticationFilter.class)
             .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
             /**Spring Security will never create an HttpSession and it will never use it to obtain the SecurityContext*/

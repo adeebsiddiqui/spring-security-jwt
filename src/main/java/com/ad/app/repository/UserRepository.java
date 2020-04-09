@@ -12,15 +12,13 @@ import java.util.Optional;
 public class UserRepository {
 
     private final PasswordEncoder passwordEncoder;
-    private final List<UserDetails> userList ;
 
     public UserRepository(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-        this.userList = retrieveListOfUsers();
     }
 
     public Optional<UserDetails> getUserDetailsByUsername(String username) {
-        return userList.stream()
+        return retrieveListOfUsers().stream()
                 .filter(u -> username.equals(u.getUsername()))
                 .findFirst();
     }
